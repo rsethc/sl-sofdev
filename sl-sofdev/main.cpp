@@ -47,13 +47,14 @@ void QuitPanel ()
 
 int main ()
 {
-	slInit();
+	slInit(); // Initialize the engine before doing ANYTHING else!
 
 	/// Unlike a game, this is a desktop application so we will just
 	/// force these settings to hardcoded values.
 	slSetVSync(true); // No need to draw more frames than will ever be seen.
 	slSetFullscreen(false); // Fullscreen mode is not needed for this app.
 
+	// Initialize GUI
 	InitPanel();
 
 	glClearColor(.95,.95,.95,0); // Background color is 95% of solid white. Alpha doesn't matter.
@@ -78,7 +79,8 @@ int main ()
 
 	CloseApp:
 
+	// Clean up GUI
 	QuitPanel();
 
-	slQuit();
+	slQuit(); // Deinitialize the engine LAST because this call will close the program!
 };
