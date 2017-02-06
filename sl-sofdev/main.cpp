@@ -2,6 +2,7 @@
 #include <slicescroll.h>
 
 #include "asksave.h"
+#include "grid.h"
 
 void SaveToFile (FILE* file)
 {
@@ -27,8 +28,16 @@ void InitPanel ()
 {
 	slBox* PanelBack = slCreateBox();
 	slSetBoxDims(PanelBack,0,0,0.2,1,100);
-	Panel = scrCreateScroll(PanelBack,24,.015);
-	PanelBack->backcolor = {239,239,239,255};
+	Panel = scrCreateScroll(PanelBack,24,.012);
+	/// Override defaults set by slice-scroll, for stylistic purposes.
+	PanelBack->backcolor = {175,175,175,255};
+	Panel->bar->behind->backcolor = {145,145,145,255};
+	Panel->bar->mark->backcolor = {111,111,111,255};
+	Panel->bar->mark->hoverbackcolor = {95,95,95,255};
+	Panel->upbutton->backcolor = {111,111,111,255};
+	Panel->upbutton->hoverbackcolor = {95,95,95,255};
+	Panel->downbutton->backcolor = {111,111,111,255};
+	Panel->downbutton->hoverbackcolor = {95,95,95,255};
 };
 void QuitPanel ()
 {
@@ -39,13 +48,17 @@ void QuitPanel ()
 int main ()
 {
 	slInit();
+
 	/// Unlike a game, this is a desktop application so we will just
-	/// hard-code settings that would otherwise be in an options menu.
-	slSetVSync(false);
-	slSetFullscreen(false);
-	/// We will also keep track of whether the window was maximized, etc
+	/// force these settings to hardcoded values.
+	slSetVSync(true); // No need to draw more frames than will ever be seen.
+	slSetFullscreen(false); // Fullscreen mode is not needed for this app.
 
 	InitPanel();
+
+	glClearColor(.95,.95,.95,0); // Background color is 95% of solid white. Alpha doesn't matter.
+	slSetCamWH_Mode(slCamWH_CutArea); // Show no blank space!
+	slSetCustomDrawStage_Back(DrawGrid); // The engine will call this function before drawing anything, so it's "behind" other things visually.
 
 	while (true)
 	{

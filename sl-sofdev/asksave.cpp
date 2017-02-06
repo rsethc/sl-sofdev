@@ -58,11 +58,16 @@ Uint8 AskSave ()
 
 	AskSaveResult = AskSave_Waiting;
 	slScalar graybox_opacity = 0; // Initial capacity of gray box.
+
+	const slScalar graybox_final = 0.625; // Final opacity
+	const slScalar graybox_duration = 0.25; // Take this long to get to final opacity
+
 	while (AskSaveResult == AskSave_Waiting)
 	{
-		graybox_opacity += (slGetDelta() * 0.625) / 0.375; // Reach final opacity after 0.375 seconds.
-		if (graybox_opacity > 0.625) graybox_opacity = 0.625; // Final opacity of gray box.
-		gray->backcolor.a = slClamp255(graybox_opacity);
+		graybox_opacity += (slGetDelta() * graybox_final) / graybox_duration; // Advance the animation toward final opacity.
+		if (graybox_opacity > graybox_final) graybox_opacity = graybox_final; // Don't go over final opacity of gray box.
+		gray->backcolor.a = slClamp255(graybox_opacity); // convert this 0-1 floating number to a 0-255 byte
+
 		slCycle(); // Continue rendering and processing input while user makes a choice.
 	};
 

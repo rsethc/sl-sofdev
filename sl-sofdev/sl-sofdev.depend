@@ -1,5 +1,18 @@
 # depslib dependency file v1.0
-1486405704 source:c:\collaboratives\sl-sofdev\sl-sofdev\main.cpp
+1486413296 source:c:\collaboratives\sl-sofdev\sl-sofdev\main.cpp
 	<slice.h>
 	<slicescroll.h>
+	"asksave.h"
+	"grid.h"
+
+1486410391 source:c:\collaboratives\sl-sofdev\sl-sofdev\asksave.cpp
+	<slice.h>
+	"asksave.h"
+
+1486409642 c:\collaboratives\sl-sofdev\sl-sofdev\asksave.h
+
+1486413276 c:\collaboratives\sl-sofdev\sl-sofdev\grid.h
+
+1486413739 source:c:\collaboratives\sl-sofdev\sl-sofdev\grid.cpp
+	<slice.h>
 
