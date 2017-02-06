@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1486405704 source:c:\collaboratives\sl-sofdev\sl-sofdev\main.cpp
+	<slice.h>
+	<slicescroll.h>
+
