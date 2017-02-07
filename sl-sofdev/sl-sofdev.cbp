@@ -33,6 +33,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="asksave.cpp" />
+		<Unit filename="asksave.h" />
+		<Unit filename="grid.cpp" />
+		<Unit filename="grid.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
